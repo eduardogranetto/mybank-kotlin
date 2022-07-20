@@ -1,0 +1,15 @@
+server:
+  port: 3000
+  error:
+    include-message: always
+
+springdoc.swagger-ui.path: /swagger.html
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mybank
+    username: postgres
+    password: postgres
+    initialize: true
+    platform: postgresql
+  jackson:
+    property-naming-strategy: SNAKE_CASE
