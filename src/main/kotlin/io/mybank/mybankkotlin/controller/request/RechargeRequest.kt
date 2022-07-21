@@ -1,15 +1,15 @@
 package io.mybank.mybankkotlin.controller.request
 
-import io.mybank.mybankkotlin.controller.entity.Payment
+import io.mybank.mybankkotlin.controller.entity.Recharge
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*
 
-data class PaymentRequest(
+data class RechargeRequest(
     val value: BigDecimal,
     val date: LocalDate,
 ) {
-    fun toEntity(accountId : UUID) = Payment(
+    fun toEntity(accountId: UUID) = Recharge(
         accountId = accountId,
         value = value,
         date = date,

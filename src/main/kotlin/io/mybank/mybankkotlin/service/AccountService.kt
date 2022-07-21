@@ -14,7 +14,9 @@ class AccountService(
 
     fun create(account: Account) = accountRepository.create(account)
 
-    fun lockBalance(accountId: UUID, value: BigDecimal) = accountRepository.lockBalance(accountId, value)
+    fun updateBalance(accountId: UUID, value: BigDecimal) = if(accountRepository.lockBalance(accountId, value)){
+        value
+    } else throw AccountNotFoundException(accountId)
 
     fun getById(id: UUID) = accountRepository.findById(id) ?: throw AccountNotFoundException(id)
 

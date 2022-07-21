@@ -2,20 +2,22 @@ package io.mybank.mybankkotlin.service
 
 import io.mybank.mybankkotlin.controller.entity.Payment
 import io.mybank.mybankkotlin.controller.entity.PaymentStatus.APPROVED
-import io.mybank.mybankkotlin.exception.AccountNotFoundException
+import io.mybank.mybankkotlin.controller.publisher.PaymentEventPublisher
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 
 @Service
 class PaymentService(
-    private val accountService: AccountService
+    private val accountService: AccountService,
+    private val paymentEventPublisher: PaymentEventPublisher
 ) {
 
-    fun create(payment: Payment) = if(lockBalance(payment)){
+    fun create(payment: Payment) = accountService.updateBalance(payment.accountId, payment.value.abs()).let {
         payment.copy(
             status = APPROVED
         )
-    } else throw AccountNotFoundException(payment.accountId)
-
-    private fun lockBalance(payment: Payment) = accountService.lockBalance(payment.accountId, payment.value)
+    }.let {
+        paymentEventPublisher.create(it)
+    }
 
 }
