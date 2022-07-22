@@ -1,6 +1,6 @@
 package io.mybank.mybankkotlin.repository
 
-import io.mybank.mybankkotlin.controller.entity.Account
+import io.mybank.mybankkotlin.entity.Account
 import java.math.BigDecimal
 import java.util.*
 

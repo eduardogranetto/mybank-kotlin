@@ -1,6 +1,7 @@
-package io.mybank.mybankkotlin.controller.publisher
+package io.mybank.mybankkotlin.event.publisher
 
-import io.mybank.mybankkotlin.controller.entity.Payment
+import io.mybank.mybankkotlin.entity.Payment
+import io.mybank.mybankkotlin.event.PaymentEvent
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Component
 
@@ -10,7 +11,7 @@ class PaymentEventPublisher(
 ) {
 
     fun create(payment: Payment) = payment.let {
-        applicationEventPublisher.publishEvent(payment)
+        applicationEventPublisher.publishEvent(PaymentEvent(it, this))
         it
     }
 

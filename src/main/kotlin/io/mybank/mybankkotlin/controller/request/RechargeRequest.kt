@@ -1,6 +1,6 @@
 package io.mybank.mybankkotlin.controller.request
 
-import io.mybank.mybankkotlin.controller.entity.Recharge
+import io.mybank.mybankkotlin.entity.Recharge
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*

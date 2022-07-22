@@ -1,6 +1,6 @@
 package io.mybank.mybankkotlin.repository.impl
 
-import io.mybank.mybankkotlin.controller.entity.Transaction
+import io.mybank.mybankkotlin.entity.Transaction
 import io.mybank.mybankkotlin.functions.toUUID
 import io.mybank.mybankkotlin.repository.TransactionRepository
 import org.springframework.data.domain.Page
@@ -50,7 +50,7 @@ class TransactionJDBCRepository(
     }
 
     override fun findByAccountId(accountId: UUID, pageRequest: PageRequest): Page<Transaction> = jdbcTemplate.query(
-        "select * from transactions where account_id = :account_id offset :offset limit :limit",
+        "select * from transactions where account_id = :account_id order by created_at desc offset :offset limit :limit",
         mapOf(
             "account_id" to accountId,
             "limit" to pageRequest.pageSize,

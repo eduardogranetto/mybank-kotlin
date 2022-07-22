@@ -1,4 +1,4 @@
-package io.mybank.mybankkotlin.controller.entity
+package io.mybank.mybankkotlin.entity
 
 import java.math.BigDecimal
 import java.time.OffsetDateTime

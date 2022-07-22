@@ -1,6 +1,6 @@
-package io.mybank.mybankkotlin.controller.entity
+package io.mybank.mybankkotlin.entity
 
-import io.mybank.mybankkotlin.controller.entity.PaymentStatus.PENDING
+import io.mybank.mybankkotlin.entity.PaymentStatus.PENDING
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.OffsetDateTime

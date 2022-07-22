@@ -21,6 +21,6 @@ class TransactionController(
         @PathVariable accountId: UUID,
         @RequestParam(defaultValue = "1") page: Int,
         @RequestParam(defaultValue = "20") size: Int
-    ) = ok(transactionService.getByAccount(accountId, PageRequest.of(page, size)))
+    ) = ok(transactionService.getByAccount(accountId, PageRequest.of(page - 1, size)))
 
 }

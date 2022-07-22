@@ -1,7 +1,9 @@
 package io.mybank.mybankkotlin.repository.impl
 
-import io.mybank.mybankkotlin.controller.entity.Account
+import io.mybank.mybankkotlin.entity.Account
+import io.mybank.mybankkotlin.exception.InsufficientFundsException
 import io.mybank.mybankkotlin.repository.AccountRepository
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert
@@ -44,13 +46,17 @@ class AccountJDBCRepository(
         this
     }
 
-    override fun lockBalance(id: UUID, value: BigDecimal) = jdbcTemplate.update(
-        "update accounts set balance = balance - :value where id = :id",
-        mapOf(
-            "value" to value,
-            "id" to id
-        )
-    ) > 0
+    override fun lockBalance(id: UUID, value: BigDecimal) = try {
+        jdbcTemplate.update(
+            "update accounts set balance = balance - :value where id = :id",
+            mapOf(
+                "value" to value,
+                "id" to id
+            )
+        ) > 0
+    }catch (e: DataIntegrityViolationException){
+        throw InsufficientFundsException()
+    }
 
     override fun findById(id: UUID) : Account? = jdbcTemplate.query(
         "select * from accounts where id = :id limit 1",
