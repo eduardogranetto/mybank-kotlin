@@ -1,6 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.google.protobuf.gradle.*
 import org.gradle.api.JavaVersion.VERSION_17
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	id("org.springframework.boot") version "2.7.1"
@@ -20,6 +20,7 @@ repositories {
 
 val openApiUiVersion = "1.6.9"
 val grpcVersion      = "1.45.0"
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -49,6 +50,9 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
+tasks.getByName<Jar>("jar") {
+	enabled = false
+}
 
 protobuf {
 	generatedFilesBaseDir = "$buildDir/generated/sources/proto"
