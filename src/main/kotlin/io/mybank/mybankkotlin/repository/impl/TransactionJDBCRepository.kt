@@ -35,7 +35,6 @@ class TransactionJDBCRepository(
             createdAt = rs.getTimestamp("created_at").toLocalDateTime().atOffset(UTC)
         )
     }
-
     override fun create(transaction: Transaction) = with(transaction) {
         jdbcInsert.execute(
             mapOf(
