@@ -6,12 +6,10 @@ server:
 springdoc.swagger-ui.path: /swagger.html
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/mybank
-    username: postgres
-    password: postgres
-    initialize: tr ue
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/mybank}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    initialize: true
     platform: postgresql
   jackson:
     property-naming-strategy: SNAKE_CASE
-
-
