@@ -2,6 +2,8 @@ server:
   port: ${PORT:3000}
   error:
     include-message: always
+  servlet:
+    context-path: /core
 
 management.endpoints.web.exposure.include: "*"
 
