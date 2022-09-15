@@ -5,7 +5,20 @@ server:
   servlet:
     context-path: /mybank-kotlin
 
-management.endpoints.web.exposure.include: "*"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true
 
 spring:
   datasource:

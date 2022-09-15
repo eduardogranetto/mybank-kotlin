@@ -25,6 +25,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -35,6 +36,7 @@ dependencies {
 	implementation("io.grpc:grpc-netty:${grpcVersion}")
 	implementation("io.grpc:grpc-protobuf:${grpcVersion}")
 	implementation("io.grpc:grpc-stub:${grpcVersion}")
+	implementation("io.micrometer:micrometer-registry-prometheus")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
