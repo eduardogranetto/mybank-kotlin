@@ -3,7 +3,7 @@ server:
   error:
     include-message: always
   servlet:
-    context-path: /core
+    context-path: /mybank-kotlin
 
 management.endpoints.web.exposure.include: "*"
 
